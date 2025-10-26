@@ -1,7 +1,7 @@
 # WISEACRE (УМНИК)ㅤㅤㅤㅤㅤACTUAL VERSION - 0.1.0
 
 <p align="left">
-  <img width="200" height="200" alt="ChatGPT Image 27 окт  2025 г , 00_37_42" src="https://github.com/user-attachments/assets/cf7a905e-105d-4ae6-a1a6-a580b4cfb5d9" align="left" style="margin-right: 20px;"/>
+  <img width="200" height="200" alt="ChatGPT Image 27 окт  2025 г , 00_37_42" src="https://github.com/user-attachments/assets/955690c0-35b6-47dd-b516-238cd83db6a9" align="left" style="margin-right: 20px;"/>
   
   **Это телеграм бот, разработка которого ведется специально для студентов университета.** 
   Разработка началась 27.10.2025 и ведется активно по сей день! Цель - облегчить ежедневную жизнь студентов университета, ведь у них и так мало времени! Функционал бота разный - от просмотра погоды и расписания, до работы с личной почтой группы прямо с помощью бота!
