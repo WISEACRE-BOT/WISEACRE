@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Environment variables
+.env
+*.env
+secrets.txt
+config.py
+
+# Data files
+allowed_students.txt
+*.db
+*.sqlite
+*.json
+data/
+
+# Logs
+*.log
+logs/
+
+# System
+.DS_Store
+Thumbs.db
