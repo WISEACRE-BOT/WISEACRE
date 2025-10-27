@@ -10,16 +10,14 @@
 **This is a Telegram bot developed specifically for university students.** 
 Development began on October 27, 2025, and has been actively progressing ever since! The goal is to make university students' daily lives easier since they have so little free time! 
 <br clear="both">
+
 ## Ресурсы и Контакты | Resources and Contacts
 
 | Usage   | Link
 | :---:   | :--:
 | gmail | panalex2006@gmail.com
 | telegram | @Alexpan_dev
-| telagram bot | nothing
-
-## Актуальная дорожная карта | Current Roadmap
-https://docs.google.com/spreadsheets/d/1GgXqCxlRor4xIdbn0R961dOSRbssQFwg-_RYkM_A94U/edit?usp=sharing
+| telagram bot | @wiseacre_university_bot
 
 ## License ##
 MIT license
