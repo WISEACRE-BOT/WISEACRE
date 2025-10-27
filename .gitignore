@@ -12,14 +12,12 @@ venv/
 .env
 *.env
 secrets.txt
-config.py
 
 # Data files
-allowed_students.txt
+data/
 *.db
 *.sqlite
 *.json
-data/
 
 # Logs
 *.log
@@ -28,3 +26,9 @@ logs/
 # System
 .DS_Store
 Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

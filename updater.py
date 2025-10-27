@@ -4,12 +4,11 @@ import os
 import subprocess
 import sys
 import pkg_resources
-from packaging import version
 
 class WiseacreUpdater:
     def __init__(self):
         self.repo_path = os.getcwd()
-        self.required_python = "3.8"
+        self.required_python = (3, 8)
         self.required_packages = {
             "python-telegram-bot": "20.7",
             "cryptography": "41.0.0", 
@@ -34,13 +33,13 @@ class WiseacreUpdater:
 
     def check_python_version(self):
         print("Checking Python version...")
-        current_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+        current_version = (sys.version_info.major, sys.version_info.minor)
         
-        if version.parse(current_version) < version.parse(self.required_python):
-            print(f"Error: Python {self.required_python}+ required (current: {current_version})")
+        if current_version < self.required_python:
+            print(f"Error: Python {self.required_python[0]}.{self.required_python[1]}+ required (current: {current_version[0]}.{current_version[1]})")
             return False
         else:
-            print(f"Python {current_version} (required: {self.required_python}+)")
+            print(f"Python {current_version[0]}.{current_version[1]} (required: {self.required_python[0]}.{self.required_python[1]}+)")
             return True
 
     def check_git_status(self):
@@ -82,7 +81,7 @@ class WiseacreUpdater:
         for package, required_ver in self.required_packages.items():
             try:
                 installed_ver = pkg_resources.get_distribution(package).version
-                if version.parse(installed_ver) < version.parse(required_ver):
+                if self.compare_versions(installed_ver, required_ver) < 0:
                     print(f"Updating {package} {installed_ver} -> {required_ver}")
                     subprocess.run([sys.executable, "-m", "pip", "install", 
                                   f"{package}>={required_ver}"], check=True)
@@ -94,6 +93,20 @@ class WiseacreUpdater:
                               f"{package}>={required_ver}"], check=True)
             except Exception as e:
                 print(f"Error with {package}: {e}")
+
+    def compare_versions(self, ver1, ver2):
+        v1_parts = list(map(int, ver1.split('.')))
+        v2_parts = list(map(int, ver2.split('.')))
+        
+        for i in range(max(len(v1_parts), len(v2_parts))):
+            v1_part = v1_parts[i] if i < len(v1_parts) else 0
+            v2_part = v2_parts[i] if i < len(v2_parts) else 0
+            
+            if v1_part < v2_part:
+                return -1
+            elif v1_part > v2_part:
+                return 1
+        return 0
 
     def install_requirements(self):
         if os.path.exists("requirements.txt"):

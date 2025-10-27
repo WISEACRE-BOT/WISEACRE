@@ -22,17 +22,19 @@ def main():
     print("WISEACRE Installer started")
     print("Installing required libraries...")
     
-    packages = [
-        "python-telegram-bot==20.7",
-        "cryptography==41.0.7", 
-        "python-dotenv==1.0.0",
-        "requests==2.31.0"
-        "packaging==21.0"
-    ]
-    
-    for package in packages:
-        if not run_command(f"pip install {package}", f"Installing {package}"):
-            print(f"Skipping {package}")
+    if os.path.exists("requirements.txt"):
+        run_command("pip install -r requirements.txt", "Installing from requirements.txt")
+    else:
+        packages = [
+            "python-telegram-bot==20.7",
+            "cryptography==41.0.7", 
+            "python-dotenv==1.0.0",
+            "requests==2.31.0"
+        ]
+        
+        for package in packages:
+            if not run_command(f"pip install {package}", f"Installing {package}"):
+                print(f"Skipping {package}")
     
     print("Installation completed")
 
