@@ -16,7 +16,7 @@ Development began on October 27, 2025, and has been actively progressing ever si
 | :---:   | :--:
 | gmail | panalex2006@gmail.com
 | telegram | @Alexpan_dev
-| telagram bot | nothing
+| telagram bot | @wiseacre_university_bot
 
 ## Актуальная дорожная карта | Current Roadmap
 https://docs.google.com/spreadsheets/d/1GgXqCxlRor4xIdbn0R961dOSRbssQFwg-_RYkM_A94U/edit?usp=sharing
