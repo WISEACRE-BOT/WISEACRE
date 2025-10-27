@@ -1,4 +1,4 @@
-# WISEACRE (УМНИК)ㅤㅤㅤㅤㅤACTUAL VERSION - 0.2.0
+# WISEACRE (УМНИК)ㅤㅤㅤㅤㅤACTUAL VERSION - 0.3.0
 
 <p align="left">
   <img width="200" height="200" alt="ChatGPT Image 27 окт  2025 г , 00_37_42" src="https://github.com/user-attachments/assets/955690c0-35b6-47dd-b516-238cd83db6a9" align="left" style="margin-right: 20px;"/>
@@ -10,6 +10,7 @@
 **This is a Telegram bot developed specifically for university students.** 
 Development began on October 27, 2025, and has been actively progressing ever since! The goal is to make university students' daily lives easier since they have so little free time! 
 <br clear="both">
+
 ## Ресурсы и Контакты | Resources and Contacts
 
 | Usage   | Link
@@ -17,8 +18,6 @@ Development began on October 27, 2025, and has been actively progressing ever si
 | gmail | panalex2006@gmail.com
 | telegram | @Alexpan_dev
 | telagram bot | @wiseacre_university_bot
-
-
 
 ## License ##
 MIT license
