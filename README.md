@@ -1,4 +1,4 @@
-# WISEACRE (УМНИК)ㅤㅤㅤㅤㅤACTUAL VERSION - 0.1.0
+# WISEACRE (УМНИК)ㅤㅤㅤㅤㅤACTUAL VERSION - 0.3.0
 
 <p align="left">
   <img width="200" height="200" alt="ChatGPT Image 27 окт  2025 г , 00_37_42" src="https://github.com/user-attachments/assets/955690c0-35b6-47dd-b516-238cd83db6a9" align="left" style="margin-right: 20px;"/>
