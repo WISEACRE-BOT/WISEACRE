@@ -1,4 +1,3 @@
-# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -7,29 +6,33 @@ __pycache__/
 env/
 venv/
 .venv/
-
-# Environment variables
 .env
 *.env
 secrets.txt
-
-# Data files
 data/
+!data/__init__.py  # если есть модуль
 *.db
 *.sqlite
 *.json
-
-# Logs
+!data/example.json  # можно оставить шаблон
 *.log
 logs/
 data/logs/
-
-# System
+*.tmp
+*.bak
 .DS_Store
 Thumbs.db
-
-# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+dist/
+build/
+__dist__/
+*.egg-info/
+*.spec
+.installer_cache/
+*.cpython-*
+*.so
+*.orig
+*.rej

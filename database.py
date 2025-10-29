@@ -3,6 +3,7 @@
 import hashlib
 import os
 from typing import Tuple
+from telegram import User
 
 
 class StudentDatabase:
@@ -46,8 +47,8 @@ class StudentDatabase:
                     return True
         return False
     
-    def authenticate_student(self, student_id: str) -> Tuple[bool, str]:
-        """Аутентифицирует студента и помечает номер как занятый"""
+    def authenticate_student(self, student_id: str, user: User = None) -> Tuple[bool, str]:
+        """Аутентифицирует студента и помечает номер как занятый с username"""
         student_hash = self._hash_student_id(student_id)
         
         if not os.path.exists(self.data_file):
@@ -63,10 +64,12 @@ class StudentDatabase:
                 if stored_hash == student_hash:
                     found = True
                     if status == "свободен":
-                        lines.append(f"{stored_hash}:занят\n")
+                        username = self._format_username(user)
+                        lines.append(f"{stored_hash}:занят@{username}\n")
                         result_message = "Успешная аутентификация!"
                     else:
-                        result_message = "Этот номер уже используется"
+                        occupied_by = status.split("@")[1] if "@" in status else "неизвестный пользователь"
+                        result_message = f"Этот номер уже используется пользователем: {occupied_by}"
                         lines.append(line)
                 else:
                     lines.append(line)
@@ -77,6 +80,19 @@ class StudentDatabase:
             return (result_message == "Успешная аутентификация!"), result_message
         else:
             return False, "Номер студбилета не найден"
+    
+    def _format_username(self, user: User) -> str:
+        """Форматирует username пользователя"""
+        if not user:
+            return "неизвестный"
+        
+        if user.username:
+            return user.username
+        elif user.first_name or user.last_name:
+            name = f"{user.first_name or ''} {user.last_name or ''}".strip()
+            return name if name else f"user_{user.id}"
+        else:
+            return f"user_{user.id}"
     
     def get_student_count(self) -> Tuple[int, int]:
         """Возвращает общее количество номеров и количество свободных"""
@@ -89,10 +105,11 @@ class StudentDatabase:
         with open(self.data_file, "r", encoding="utf-8") as f:
             for line in f:
                 total += 1
-                _, status = line.strip().split(":")
+                status = line.strip().split(":")[1]
                 if status == "свободен":
                     free += 1
         
         return total, free
-    
+
+
 db = StudentDatabase()

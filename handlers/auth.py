@@ -9,11 +9,12 @@ from utils.logger import logger
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработчик команды /start"""
+    user = update.effective_user
+    
+    logger.log_command(user, "start")
     
     welcome_text = """
 🎓 *На связи Умник!*
-
-Этот бот создан специально для студентов вашего университета, чтобы облегчить повседневную академическую жизнь.
 
 🔐 *Для доступа к функциям необходимо пройти аутентификацию.*
 
@@ -25,19 +26,18 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def handle_student_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработчик ввода номера студбилета"""
+    user = update.effective_user
     student_id = update.message.text
     
-    # Логируем ввод номера
-    logger.log_message(student_id, "message", f"Введен номер: {student_id}")
+    logger.log_text_message(user, f"Введен студбилет: {student_id}")
     
-    success, message = db.authenticate_student(student_id)
+    success, message = db.authenticate_student(student_id, user)
     
-    # Логируем результат аутентификации
-    logger.log_authentication(student_id, success)
+    logger.log_authentication(user, student_id, success, message)
     
     if success:
-        # Сохраняем student_id в контексте для будущих логов
         context.user_data['student_id'] = student_id
+        context.user_data['authenticated'] = True
         
         welcome_text = """
 ✅ *Аутентификация успешна!*
