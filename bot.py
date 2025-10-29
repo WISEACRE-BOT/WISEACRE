@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
-from telegram import Update
+from telegram import Update, BotCommand
 from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-TOKEN = os.getenv("BOT_TOKEN")  
+TOKEN = os.getenv("BOT_TOKEN")
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -56,6 +56,16 @@ async def schedule_command(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text(message)
 
 
+async def set_commands(application):
+    """Устанавливает список команд в меню Telegram"""
+    commands = [
+        BotCommand("start", "Запустить бота"),
+        BotCommand("help", "Показать список команд"),
+        BotCommand("raspisanie", "Показать расписание (можно писать /расписание)"),
+    ]
+    await application.bot.set_my_commands(commands)
+
+
 def main():
     """Точка входа"""
     if not TOKEN:
@@ -63,9 +73,12 @@ def main():
 
     app = ApplicationBuilder().token(TOKEN).build()
 
+    # ✅ поддержка и латиницы, и кириллицы
+    app.add_handler(CommandHandler(["raspisanie", "расписание"], schedule_command))
     app.add_handler(CommandHandler("start", start_command))
     app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(CommandHandler("расписание", schedule_command))
+
+    app.post_init(set_commands)
 
     print("🤖 Бот WISEACRE запущен...")
     app.run_polling()
